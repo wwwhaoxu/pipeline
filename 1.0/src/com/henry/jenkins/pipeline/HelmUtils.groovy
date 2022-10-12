@@ -23,12 +23,12 @@ def genYaml() {
 
         if [ ${params.GVR} == "deployment" ]; then
             sed -i -E  \
-                 -e 's@(.*)statefulset(.*)@#\\1statefulset\\2@' \ 
-                 -e 's@(.*)service-headless(.*)@#\\1service-headless\\2@'  \
+                 -e 's@(.*)statefulset(.*)@#\\1statefulset\\2@' \
+                 -e 's@(.*)service-headless(.*)@#\\1service-headless\\2@' \
             ./${SERVICE_NAME}/base/kustomization.yaml
         else 
             sed -i -E  \
-                 -e 's@(.*)deployment(.*)@#\\1deployment\\2@' \ 
+                 -e 's@(.*)deployment(.*)@#\\1deployment\\2@' \
                  -e 's@(.*)service.yaml@#\\1service.yaml@'  \
             ./${SERVICE_NAME}/base/kustomization.yaml
         fi
