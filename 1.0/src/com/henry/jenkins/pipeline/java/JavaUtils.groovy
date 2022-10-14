@@ -51,15 +51,15 @@ def deploy() {
             cat ./base/kustomization.yaml
         """
         
-        scirpt {
-            withKubeConfig(credentialsId: params.NS, namespace: params.NS, serverUrl: Global.common.kusIP(params.NS)) {
+       
+        withKubeConfig(credentialsId: params.NS, namespace: params.NS, serverUrl: Global.common.kusIP(params.NS)) {
             
                 // sh 'kubectl apply -k ./overlay/${NS}'
-                sh 'kubectl get ns'
+            sh 'kubectl get ns'
                 // script {   
                 //    Global.common.delPod()    
                 // }    
-            }
+            
         }
     }                
 }
