@@ -41,7 +41,7 @@ def String kusIP(String ns) {
    return nstoip[ns]
 }
 
-
+@NonCPS
 def checkPodRun(String gvr) {
    def result = sh(script: "kubectl get " + gvr + "/${params.SERVICE_NAME} | awk 'NR >1 {print \$2}", returnStdout: true)
     // 1/1
