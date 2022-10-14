@@ -38,7 +38,7 @@ def delPod() {
 
 def String kusIP(String ns) {
    def Map nstoip = ["online": "https://172.18.28.174:6443"]
-   return ntoip[ns]
+   return nstoip[ns]
 }
 
 
