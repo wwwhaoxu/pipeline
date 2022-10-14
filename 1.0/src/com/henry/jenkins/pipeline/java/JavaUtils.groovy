@@ -56,6 +56,7 @@ def deploy() {
                 // sh 'kubectl apply -k ./overlay/${NS}'
             sh 'kubectl get ns'
             
+            Global.common.checkPodRun("sts")
                 // script {   
                 //    Global.common.delPod()    
                 // }    
