@@ -70,11 +70,11 @@ def deploy() {
 }
 
 def checkStatus() {
-    Global.common.info "hello world"
-//     for(int count = 0; count < 60; count++) {
-//         sh 'sleep 5'
+//     Global.common.info "hello world"
+    for(int count = 0; count < 60; count++) {
+        sh 'sleep 5'
 //         Global.common.checkPodRun("sts")
-//         Global.common.info("hello world")
-//     }
+        Global.common.info("hello world")
+    }
 }
 
