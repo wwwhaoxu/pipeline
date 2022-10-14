@@ -64,11 +64,11 @@ def deploy() {
     }                
 }
 def checkStatus() {
-    sleep(5)
-    println("111")
-//     for(int count = 0; count < 60; count++) {
-//         sh 'sleep 5'
+    for(int count = 0; count < 3; count++) {
+        sleep(5)
+        println("111")
+    }
+
 //         Global.common.checkPodRun("sts")
-//     Global.common.info("hello world")
-//     }
+
 }
