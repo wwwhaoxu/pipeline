@@ -23,5 +23,5 @@ def deploy() {
     
 }
 def checkStatus() {
-    Global.javautils.deploy()
+    Global.javautils.checkStatus()
 }
