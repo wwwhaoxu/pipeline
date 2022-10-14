@@ -51,7 +51,7 @@ def deploy() {
             cat ./base/kustomization.yaml
         """
         
-        withKubeConfig(credentialsId: params.NS, namespace: params.NS, serverUrl: common.nstoip[params.NS]) {
+        withKubeConfig(credentialsId: params.NS, namespace: params.NS, serverUrl: Global.common.nstoip[params.NS]) {
             
             // sh 'kubectl apply -k ./overlay/${NS}'
             sh 'kubectl get ns'
