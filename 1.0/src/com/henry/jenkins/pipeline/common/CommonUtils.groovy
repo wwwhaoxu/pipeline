@@ -1,12 +1,25 @@
 package com.henry.jenkins.pipeline.common
 
-def replace(String path, String a, String b) {
-    
-    File testFile = new File(path, 'Dockerfile').getCanonicalPath()
-    String after = testFile.getText("utf-8").replaceAll(a, b)
-    println after
-    testFile.write(after)
 
+// def replace(String path, String a, String b) {
+   
+//     File testFile = new File("/Users/wanghaoxu", 'Dockerfile').getCanonicalPath()
+//     String after = testFile.getText("utf-8").replaceAll(a, b)
+//     println after
+//     testFile.write(after)
+
+// }
+@NonCPS
+static def replace(file, oldText, newText) {
+    String text = file.text.replaceAll(oldText, newText)
+    file.withPrintWriter { printWriter ->
+        printWriter.print(text)
+    }
+}
+
+
+def info(message) {
+  echo "INFO: ${message}"
 }
 
 def delPod() {

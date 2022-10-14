@@ -6,20 +6,26 @@ class Global {
     static Object common = new CommonUtils()
 }
 
+
+
 // 准备Dockerfile和启动脚步
+// @NonCPS
 def prepareDockerfileScript() {
+
+    javaDockerfile = libraryResource 'com/henry/jenkins/pipeline/dockerfile/javaDockerfile'
+    writeFile file: "./Dockerfile",text: javaDockerfile
+
     sh """
-        cp -rf ${env.WORKSPACE}/dockerfile_template/spring.Dockerfile ./Dockerfile
         cp -rf ${env.WORKSPACE}/entrypoint/entrypoint_spring*.sh ./
         cp -rf ${env.WORKSPACE}/upload_files/iast_agent.jar ./
 
-        sed -i -e 's/{SERVICE_NAME}/${params.SERVICE_NAME}/g' Dockerfile
     """
     
-    def path = sh(script: 'pwd', returnStdout: true).trim()
-    common.replace(path, "BASE_IMAGE", BASE_IMAGE)
-    common.replace(path, "JAR_NAME", JAR_NAME)
-        
+    // def path = sh(script: 'pwd', returnStdout: true).trim()
+    // Global.common.replace("BASE_IMAGE", "aaa")
+    // Global.common.replace("JAR_NAME", "bbb")
+    // Global.common.replace(new File("/Users/wanghaoxu/Dockerfile"), "BASE_IMAGE", "aaa")    
+    // Global.common.info "hello world"
 }
 
 def javaBuild() {
@@ -46,7 +52,7 @@ def deploy() {
             sh 'kubectl apply -k ./overlay/${NS}'
             
             script {   
-               common.delPod()    
+               Global.common.delPod()    
             }    
         }
     }                
@@ -55,6 +61,6 @@ def deploy() {
 def checkStatus() {
     for(int count = 0; i < 60; count++) {
         sh 'sleep 5'
-        common.checkPodRun
+        Global.common.checkPodRun
     }
 }

@@ -8,3 +8,7 @@ class Global {
 def build() {
     Global.javautils.javaBuild()
 }
+
+def prepareDockerfileScript() {
+    Global.javautils.prepareDockerfileScript()
+}
