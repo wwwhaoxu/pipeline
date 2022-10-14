@@ -43,6 +43,8 @@ def imageBuild() {
 }
 
 def deploy() {
+    
+    Global.common.info "hello world"
 
     dir("${WORKSPACE}/${SERVICE_NAME}"){
         sh """
@@ -56,7 +58,6 @@ def deploy() {
             
                 // sh 'kubectl apply -k ./overlay/${NS}'
             sh 'kubectl get ns'
-            Global.common.info("hello world")
             
                 // script {   
                 //    Global.common.delPod()    
