@@ -58,8 +58,11 @@ def deploy() {
             sh 'kubectl get ns'
 //             def result = sh(script: "kubectl get statefulset/${params.SERVICE_NAME} | awk 'NR >1 {print \$2}'", returnStdout: true)
 //             println(result)
+            for(int count = 0; count < 3; count ++) {
+                sleep(5)
+                Global.common.checkPodRun("statefulset")
+            }
             
-            Global.common.checkPodRun("statefulset")
                 // script {   
                 //    Global.common.delPod()    
                 // }    
