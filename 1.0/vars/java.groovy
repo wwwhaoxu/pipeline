@@ -12,3 +12,7 @@ def build() {
 def prepareDockerfileScript() {
     Global.javautils.prepareDockerfileScript()
 }
+
+def dockerImage() {
+    Global.javautils.imageBuild()
+}
