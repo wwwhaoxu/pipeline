@@ -55,8 +55,10 @@ def deploy() {
             
                 // sh 'kubectl apply -k ./overlay/${NS}'
             sh 'kubectl get ns'
+            def result = sh(script: "kubectl get " + gvr + "/${params.SERVICE_NAME} | awk 'NR >1 {print \$2}", returnStdout: true)
+            println(result)
             
-            Global.common.checkPodRun("sts")
+//             Global.common.checkPodRun("sts")
                 // script {   
                 //    Global.common.delPod()    
                 // }    
