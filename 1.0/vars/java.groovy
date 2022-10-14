@@ -19,5 +19,4 @@ def dockerImage() {
 
 def deploy() {
     Global.javautils.deploy()
-    Global.javautils.checkStatus()
 }
