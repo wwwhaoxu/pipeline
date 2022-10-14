@@ -66,7 +66,7 @@ def deploy() {
 def checkStatus() {
     for(int count = 0; count < 3; count++) {
         sleep(5)
-        println("111")
+        Global.common.info "hello world"
     }
 
 //         Global.common.checkPodRun("sts")
