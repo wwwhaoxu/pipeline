@@ -45,18 +45,19 @@ def imageBuild() {
 def deploy() {
 
     dir("${WORKSPACE}/${SERVICE_NAME}"){
-        sh "sed -i -E -e 's#(newTag:..).*(.\$)#\\1${BUILD_TAG}\\2#' \
-        ./base/kustomization.yaml"
+        sh """
+            sed -i -E -e 's#(newTag:..).*(.\$)#\\1${BUILD_TAG}\\2#' ./base/kustomization.yaml"
         
-        sh "cat ./base/kustomization.yaml"
+            cat ./base/kustomization.yaml
+        """
         
-        withKubeConfig(credentialsId: 'ack-online', namespace: '${NS}', serverUrl: common.nstoip[params.NS]) {
+        withKubeConfig(credentialsId: params.NS, namespace: params.NS, serverUrl: common.nstoip[params.NS]) {
             
-            sh 'kubectl apply -k ./overlay/${NS}'
-            
-            script {   
-               Global.common.delPod()    
-            }    
+            // sh 'kubectl apply -k ./overlay/${NS}'
+            sh 'kubectl get ns'
+            // script {   
+            //    Global.common.delPod()    
+            // }    
         }
     }                
 }
