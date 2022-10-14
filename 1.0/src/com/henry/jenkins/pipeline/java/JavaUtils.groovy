@@ -63,6 +63,8 @@ def deploy() {
         }
     }                
 }
+
+@NonCPS
 def checkStatus() {
     for(int count = 0; count < 3; count++) {
         sleep(5)
