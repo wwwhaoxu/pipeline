@@ -51,7 +51,7 @@ def checkPodRun(String gvr) {
     totalCount = result[1]
     if(runCount != totalCount) {
         info "恭喜你successful";
-        System.exit(1);
+        break;
     }
    
 }
