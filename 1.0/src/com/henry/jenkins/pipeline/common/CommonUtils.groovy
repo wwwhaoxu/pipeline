@@ -42,7 +42,7 @@ def String kusIP(String ns) {
 }
 
 
-def checkPodRun(Sting gvr) {
+def checkPodRun(String gvr) {
     def result = sh(script: "kubectl get " + gvr + "/${SERVICE_NAME} | awk 'NR >1 {print \$2}", returnStdout: true)
     // 1/1
     result = result.split("/")
