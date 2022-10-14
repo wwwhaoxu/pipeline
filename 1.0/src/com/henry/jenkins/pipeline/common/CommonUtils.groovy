@@ -45,14 +45,13 @@ def String kusIP(String ns) {
 def checkPodRun(Sting gvr) {
     def result = sh(script: "kubectl get " + gvr + "/${SERVICE_NAME} | awk 'NR >1 {print \$2}", returnStdout: true)
     // 1/1
-    sh """
-        runCount=${result:0:1}
-        totalCount=${result:2:1}
-        if [ $runCount == $totalCount ];then
-            echo "succesful"
-            exit 0
-        fi
-    """ 
+    result = result.split("/")
+    runCount = result[0]
+    totalCount = result[1]
+    if runCount == totalCount {
+        info "恭喜你successful"
+        sh "exit 0"
+    }
 }
 
 
