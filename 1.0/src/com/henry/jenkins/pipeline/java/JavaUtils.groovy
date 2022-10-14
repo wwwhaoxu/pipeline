@@ -64,13 +64,14 @@ def deploy() {
     }                
 }
 
-@NonCPS
+
 def checkStatus() {
-    for(int count = 0; count < 3; count++) {
-        sleep(5)
-        Global.common.info "hello world"
-    }
+//     for(int count = 0; count < 3; count++) {
+//         sleep(5)
+//         Global.common.info "hello world"
+//     }
 
 //         Global.common.checkPodRun("sts")
+    Global.common.info "hello world"
 
 }
