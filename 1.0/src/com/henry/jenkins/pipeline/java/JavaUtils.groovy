@@ -46,7 +46,7 @@ def deploy() {
 
     dir("${WORKSPACE}/${SERVICE_NAME}"){
         sh """
-            sed -i -E -e 's#(newTag:..).*(.\$)#\\1${BUILD_TAG}\\2#' ./base/kustomization.yaml"
+            sed -i -E -e 's#(newTag:..).*(.\$)#\\1${BUILD_TAG}\\2#' ./base/kustomization.yaml
         
             cat ./base/kustomization.yaml
         """
