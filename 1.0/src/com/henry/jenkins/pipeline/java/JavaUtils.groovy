@@ -56,16 +56,19 @@ def deploy() {
             
                 // sh 'kubectl apply -k ./overlay/${NS}'
             sh 'kubectl get ns'
-            for(int count = 0; count < 3; count++) {
-                sleep(5)
-                Global.common.info "hello world"
-            }
+            
                 // script {   
                 //    Global.common.delPod()    
                 // }    
             
         }
-    }                
+        
+    } 
+    
+    for(int count = 0; count < 3; count++) {
+                sleep(5)
+                Global.common.info "hello world"
+    }
 }
 
 def checkStatus() {
