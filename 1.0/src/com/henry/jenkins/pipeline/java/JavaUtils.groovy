@@ -44,8 +44,6 @@ def imageBuild() {
 
 def deploy() {
     
-    Global.common.info "hello world"
-
     dir("${WORKSPACE}/${SERVICE_NAME}"){
         sh """
             sed -i -E -e 's#(newTag:..).*(.\$)#\\1${BUILD_TAG}\\2#' ./base/kustomization.yaml
@@ -53,7 +51,6 @@ def deploy() {
             cat ./base/kustomization.yaml
         """
         
-       
         withKubeConfig(credentialsId: params.NS, namespace: params.NS, serverUrl: Global.common.kusIP(params.NS)) {
             
                 // sh 'kubectl apply -k ./overlay/${NS}'
@@ -65,7 +62,8 @@ def deploy() {
             
         }
         
-    } 
+    }
+    Global.common.info "hello world"
     
     
     
