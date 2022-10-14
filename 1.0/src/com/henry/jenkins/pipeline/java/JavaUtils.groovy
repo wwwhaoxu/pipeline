@@ -44,6 +44,7 @@ def imageBuild() {
 
 def deploy() {
     
+    Global.common.info "starting deploy ..."
     dir("${WORKSPACE}/${SERVICE_NAME}"){
         sh """
             sed -i -E -e 's#(newTag:..).*(.\$)#\\1${BUILD_TAG}\\2#' ./base/kustomization.yaml
