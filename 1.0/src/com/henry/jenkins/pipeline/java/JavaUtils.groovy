@@ -65,7 +65,7 @@ def deploy() {
 }
 
 def checkStatus() {
-    for(int count = 0; i < 60; count++) {
+    for(int count = 0; count < 60; count++) {
         sh 'sleep 5'
         Global.common.checkPodRun("sts")
     }
