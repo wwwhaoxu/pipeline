@@ -49,7 +49,7 @@ def checkPodRun(String gvr) {
     result = result.split("/")
     runCount = result[0]
     totalCount = result[1]
-    if(runCount != totalCount) {
+    if(runCount == totalCount) {
         info "恭喜你successful"
         sh "exit 0"
     }
