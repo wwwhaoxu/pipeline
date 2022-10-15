@@ -71,7 +71,7 @@ def deploy() {
             for(int count = 0; count < 60; count ++) {
                 
                 sleep(5)
-                if(!Global.common.checkPodRun("statefulset")) {
+                if(!Global.common.checkPodRun(params.GVR)) {
                     info "恭喜你successful";
                     break
                 }
