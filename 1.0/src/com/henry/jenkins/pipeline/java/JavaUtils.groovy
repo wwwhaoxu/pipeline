@@ -46,6 +46,9 @@ def imageBuild() {
 
 def deploy() {
     
+//     因为CPS 限制必须先吊用Global.common中的任意一个方法，后面的 Global.common.delPod()、Global.common.checkPodRun(params.GVR) 才
+//     能执行成功
+    
     Global.common.info "starting deploy ..."
 
 
@@ -71,23 +74,13 @@ def deploy() {
             for(int count = 0; count < 60; count ++) {
                 
                 sleep(5)
-                if(!Global.common.checkPodRun(params.GVR)) {
+                if(Global.common.checkPodRun(params.GVR)) {
                     info "恭喜你successful";
                     break
                 }
             }
-            
-                // script {   
-                //    Global.common.delPod()    
-                // }    
-            
         }
-        
-    }
-    
-    
-    
-    
+    }    
 }
 
 def checkStatus() {
