@@ -24,9 +24,11 @@ def info(message) {
 
 def delPod() {
     
-    def result = sh(script: "kubectl get pod  |grep '0/1' |grep ${SERVICE_NAME}  | awk '{print \$1}'", returnStdout: true)
+    def result = sh(script: "kubectl get pod  |grep '0/1' |grep ${params.SERVICE_NAME}  | awk '{print \$1}'", returnStdout: true)
                 
     def podList = result.split('\n')
+
+    info podList
     
     if (podList.size() > 0) {
         println(podList.size())
@@ -49,10 +51,6 @@ def boolean checkPodRun(String gvr) {
     result = result.split("/")
     runCount = result[0]
     totalCount = result[1]
-    // if(runCount != totalCount) {
-    //     info "恭喜你successful";
-    //     break;
-    // }
     return runCount == totalCount
    
 }

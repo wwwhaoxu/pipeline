@@ -48,7 +48,6 @@ def deploy() {
     
     Global.common.info "starting deploy ..."
 
-   
 
     dir("${WORKSPACE}/${SERVICE_NAME}"){
         sh """
@@ -59,12 +58,15 @@ def deploy() {
         
         withKubeConfig(credentialsId: params.NS, namespace: params.NS, serverUrl: Global.common.kusIP(params.NS)) {
             
-            // sh 'kubectl apply -k ./overlay/${NS}'
-            sh 'kubectl get ns'
+            sh 'kubectl apply -k ./overlay/${params.NS}'
+            // sh 'kubectl get ns'
+
+            info "start delete pod ..."
+            Global.common.delPod()
+
 
             // Global.common.info "starting check status ..."
             info "starting check status ..."
-
 
             for(int count = 0; count < 60; count ++) {
                 
