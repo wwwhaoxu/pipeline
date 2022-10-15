@@ -58,7 +58,7 @@ def deploy() {
         
         withKubeConfig(credentialsId: params.NS, namespace: params.NS, serverUrl: Global.common.kusIP(params.NS)) {
             
-            sh 'kubectl apply -k ./overlay/${params.NS}'
+            sh "kubectl apply -k ./overlay/${params.NS}"
             // sh 'kubectl get ns'
 
             info "start delete pod ..."
