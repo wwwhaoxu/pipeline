@@ -60,7 +60,7 @@ def deploy() {
 //             println(result)
             for(int count = 0; count < 3; count ++) {
                 Global.common.info "starting check status ..."
-                sleep(5000)
+                sleep(5)
                 if(Global.common.checkPodRun("statefulset")) {
                     echo "恭喜你successful";
                     break
