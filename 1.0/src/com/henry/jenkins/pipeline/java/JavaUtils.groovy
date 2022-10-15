@@ -6,7 +6,9 @@ class Global {
     static Object common = new CommonUtils()
 }
 
-
+def info(message) {
+    echo "INFO: ${message}"
+}
 
 // 准备Dockerfile和启动脚步
 // @NonCPS
@@ -44,7 +46,10 @@ def imageBuild() {
 
 def deploy() {
     
-    Global.common.info "starting deploy ..."
+    // Global.common.info "starting deploy ..."
+
+    info "starting deploy ..."
+
     dir("${WORKSPACE}/${SERVICE_NAME}"){
         sh """
             sed -i -E -e 's#(newTag:..).*(.\$)#\\1${BUILD_TAG}\\2#' ./base/kustomization.yaml
@@ -54,15 +59,18 @@ def deploy() {
         
         withKubeConfig(credentialsId: params.NS, namespace: params.NS, serverUrl: Global.common.kusIP(params.NS)) {
             
-                // sh 'kubectl apply -k ./overlay/${NS}'
+            // sh 'kubectl apply -k ./overlay/${NS}'
             sh 'kubectl get ns'
-//             def result = sh(script: "kubectl get statefulset/${params.SERVICE_NAME} | awk 'NR >1 {print \$2}'", returnStdout: true)
-//             println(result)
-            for(int count = 0; count < 3; count ++) {
-                Global.common.info "starting check status ..."
+
+            // Global.common.info "starting check status ..."
+            info "starting check status ..."
+
+
+            for(int count = 0; count < 60; count ++) {
+                
                 sleep(5)
                 if(!Global.common.checkPodRun("statefulset")) {
-                    echo "恭喜你successful";
+                    info "恭喜你successful";
                     break
                 }
             }
