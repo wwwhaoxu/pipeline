@@ -71,7 +71,7 @@ def deploy() {
             // Global.common.info "starting check status ..."
             info "starting check status ..."
 
-            for(int count = 0; count < 60; count ++) {
+            for(int count = 0; count < 6; count ++) {
                 
                 sleep(5)
                 if(Global.common.checkPodRun(params.GVR)) {
@@ -80,7 +80,7 @@ def deploy() {
                 }
                 info "Don't worry, we could try agin!"
             }
-            info "try 60 times， Sorry failed！！！"
+            info "try 6 times， Sorry failed！！！"
         }
     }    
 }
