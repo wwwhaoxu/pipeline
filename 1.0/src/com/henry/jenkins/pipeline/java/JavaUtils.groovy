@@ -78,6 +78,7 @@ def deploy() {
                     info "恭喜你successful";
                     break
                 }
+                info "Don't worry, we could try agin!"
             }
         }
     }    
