@@ -80,6 +80,7 @@ def deploy() {
                 }
                 info "Don't worry, we could try agin!"
             }
+            info "try 60 times， Sorry failed！！！"
         }
     }    
 }
