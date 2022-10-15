@@ -46,9 +46,9 @@ def imageBuild() {
 
 def deploy() {
     
-    // Global.common.info "starting deploy ..."
+    Global.common.info "starting deploy ..."
 
-    info "starting deploy ..."
+   
 
     dir("${WORKSPACE}/${SERVICE_NAME}"){
         sh """
