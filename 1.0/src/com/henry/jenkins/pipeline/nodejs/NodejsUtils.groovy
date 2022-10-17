@@ -21,24 +21,26 @@ def prepareDockerfileScript() {
 
 def nodejsBuild() {
    sh '''
-                    if [ -d "node_modules" ]; then
-                         mv  node_modules{,.$(date +%F%T)}
-                    fi
-                    
-                    if [ -e "package-lock.json" ]; then
-                        mv  package-lock.json{,.$(date +%F%T)}
-                    fi
-                    cd ${SERVICE_NAME/-/_}
-                    ${env.NODE_PATH}/pnpm install --shamefully-hoist
-                    ${env.NODE_PATH}/pnpm run build:${params.NS}
-       '''
+        if [ -d "node_modules" ]; then
+             mv  node_modules{,.$(date +%F%T)}
+        fi
+        
+        if [ -e "package-lock.json" ]; then
+            mv  package-lock.json{,.$(date +%F%T)}
+        fi
+        cd ${SERVICE_NAME/-/_}
+        ${NODE_PATH}/pnpm install --shamefully-hoist
+        ${NODE_PATH}/pnpm run build:${NS}
+       
+      '''
 }
 
 def imageBuild() {
+    
     sh """
         docker build \
             --build-arg BASE_IMAGE=${params.BASE_IMAGE} \
-            --build-arg SERVICE_NAME=${params.SERVICE_NAME} \
+            --build-arg SERVICE_NAME=${params.SERVICE_NAME/-/_} \
             -t ${env.ECR_ADDR}/${params.SERVICE_NAME}:${BUILD_TAG} -f Dockerfile .  
         docker push ${env.ECR_ADDR}/${params.SERVICE_NAME}:${BUILD_TAG}
     """
