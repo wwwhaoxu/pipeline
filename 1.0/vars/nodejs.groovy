@@ -6,7 +6,7 @@ class Global {
 
 
 def build() {
-    Global.nodejsutils.javaBuild()
+    Global.nodejsutils.nodejsBuild()
 }
 
 def prepareDockerfileScript() {
