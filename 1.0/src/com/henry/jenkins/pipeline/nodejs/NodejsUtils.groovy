@@ -21,9 +21,9 @@ def prepareDockerfileScript() {
 
 def nodejsBuild() {
     sh """
-        cd ${params.SERVICE_NAME/-/_}
-        ${env.NODE_PATH}/pnpm install --shamefully-hoist
-        ${env.NODE_PATH}/pnpm run build:${params.NS}
+    cd ${params.SERVICE_NAME/-/_}
+    ${env.NODE_PATH}/pnpm install --shamefully-hoist
+    ${env.NODE_PATH}/pnpm run build:${params.NS}
     """
 }
 
