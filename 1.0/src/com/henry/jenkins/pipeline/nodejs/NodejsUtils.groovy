@@ -31,8 +31,8 @@ def nodejsBuild() {
        '''
     sh """
                     cd ${params.SERVICE_NAME/-/_}
-                    ${env.NODE_PATH}/npm install --shamefully-hoist
-                    ${env.NODE_PATH}/npm run build:${NS}
+                    ${NODE_PATH}/pnpm install --shamefully-hoist
+                    ${NODE_PATH}/pnpm run build:${params.NS}
       """
 }
 
