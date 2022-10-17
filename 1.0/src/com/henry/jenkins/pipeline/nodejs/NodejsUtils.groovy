@@ -40,7 +40,7 @@ def imageBuild() {
     sh """
         docker build \
             --build-arg BASE_IMAGE=${params.BASE_IMAGE} \
-            --build-arg SERVICE_NAME=${params.SERVICE_NAME/-/_} \
+            --build-arg SERVICE_NAME=${params.SERVICE_NAME} \
             -t ${env.ECR_ADDR}/${params.SERVICE_NAME}:${BUILD_TAG} -f Dockerfile .  
         docker push ${env.ECR_ADDR}/${params.SERVICE_NAME}:${BUILD_TAG}
     """
