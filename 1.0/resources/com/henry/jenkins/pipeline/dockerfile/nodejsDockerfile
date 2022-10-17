@@ -9,7 +9,7 @@ LABEL maintainer="ops@upex.co"
 
 USER java_app:appgroup
 
-COPY --chown=java_app:appgroup ${SERVICE_NAME} /data/${SERVICE_NAME/-/_}
+COPY --chown=java_app:appgroup ${SERVICE_NAME} /data/${SERVICE_NAME}
 
 WORKDIR /data/${SERVICE_NAME}
 
