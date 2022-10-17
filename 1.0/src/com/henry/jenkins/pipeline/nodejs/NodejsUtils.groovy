@@ -37,13 +37,13 @@ def nodejsBuild() {
 
 def imageBuild() {
     
-    sh """
+    sh '''
         docker build \
-            --build-arg BASE_IMAGE=${params.BASE_IMAGE} \
-            --build-arg SERVICE_NAME=${params.SERVICE_NAME} \
-            -t ${env.ECR_ADDR}/${params.SERVICE_NAME}:${BUILD_TAG} -f Dockerfile .  
-        docker push ${env.ECR_ADDR}/${params.SERVICE_NAME}:${BUILD_TAG}
-    """
+            --build-arg BASE_IMAGE=${BASE_IMAGE} \
+            --build-arg SERVICE_NAME=${SERVICE_NAME/-/_} \
+            -t ${ECR_ADDR}/${SERVICE_NAME}:${BUILD_TAG} -f Dockerfile .  
+        docker push ${ECR_ADDR}/${SERVICE_NAME}:${BUILD_TAG}
+    '''
 }
 
 def deploy() {
