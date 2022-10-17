@@ -14,7 +14,7 @@ def info(message) {
 // @NonCPS
 def prepareDockerfileScript() {
 
-    javaDockerfile = libraryResource 'com/henry/jenkins/pipeline/dockerfile/nodejsDockerfile'
+    nodejsDockerfile = libraryResource 'com/henry/jenkins/pipeline/dockerfile/nodejsDockerfile'
     writeFile file: "./Dockerfile",text: nodejsDockerfile
 
 }
