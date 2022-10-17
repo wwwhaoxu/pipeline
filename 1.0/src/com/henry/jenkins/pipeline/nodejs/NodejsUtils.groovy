@@ -20,11 +20,18 @@ def prepareDockerfileScript() {
 }
 
 def nodejsBuild() {
-    sh """
-    cd ${params.SERVICE_NAME/-/_}
-    ${env.NODE_PATH}/pnpm install --shamefully-hoist
-    ${env.NODE_PATH}/pnpm run build:${params.NS}
-    """
+   sh '''
+                    if [ -d "node_modules" ]; then
+                         mv  node_modules{,.$(date +%F%T)}
+                    fi
+                    
+                    if [ -e "package-lock.json" ]; then
+                        mv  package-lock.json{,.$(date +%F%T)}
+                    fi
+                    cd ${SERVICE_NAME/-/_}
+                    ${NODE_PATH}/pnpm install --shamefully-hoist
+                    ${NODE_PATH}/pnpm run build:${NS}
+      '''
 }
 
 def imageBuild() {
