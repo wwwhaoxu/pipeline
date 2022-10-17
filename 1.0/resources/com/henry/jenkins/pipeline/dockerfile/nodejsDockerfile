@@ -1,0 +1,16 @@
+ARG BASE_IMAGE
+
+FROM ${BASE_IMAGE}
+
+ARG SERVICE_NAME
+
+LABEL maintainer="ops@upex.co"
+
+
+USER java_app:appgroup
+
+COPY --chown=java_app:appgroup ${SERVICE_NAME} /data/${SERVICE_NAME/-/_}
+
+WORKDIR /data/${SERVICE_NAME}
+
+EXPOSE 3000

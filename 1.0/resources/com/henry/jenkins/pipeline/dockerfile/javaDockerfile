@@ -8,8 +8,6 @@ ARG JAR_NAME
 
 RUN su - java_app -c "mkdir -p /data/java/${SERVICE_NAME} /data/logs/${SERVICE_NAME}"
 
-# COPY --chown... require docker v17.09.0-ce and newer
-#COPY --chown=java_app:appgroup entrypoint_spring.sh data/java/entrypoint_spring.sh
 COPY --chown=java_app:appgroup entrypoint_spring_jdk11_update.sh /data/java/entrypoint_spring.sh
 COPY --chown=java_app:appgroup ${JAR_NAME} /data/java/${SERVICE_NAME}/${SERVICE_NAME}.jar
 COPY --chown=java_app:appgroup iast_agent.jar /data/java/iast_agent.jar
