@@ -73,7 +73,7 @@ def deploy() {
             // Global.common.info "starting check status ..."
             info "starting check status ..."
 
-            for(int count = 0; count < 6; count ++) {
+            for(int count = 0; count < 60; count ++) {
                 
                 sleep(5)
                 if(Global.common.checkPodRun(params.GVR)) {
@@ -87,12 +87,4 @@ def deploy() {
     }    
 }
 
-def checkStatus() {
-    Global.common.info "hello world"
-    for(int count = 0; count < 60; count++) {
-        sh 'sleep 5'
-//         Global.common.checkPodRun("sts")
-        Global.common.info("hello world")
-    }
-}
 
