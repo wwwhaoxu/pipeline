@@ -28,10 +28,12 @@ def nodejsBuild() {
                     if [ -e "package-lock.json" ]; then
                         mv  package-lock.json{,.$(date +%F%T)}
                     fi
-                    cd ${SERVICE_NAME/-/_}
+       '''
+    sh """
+                    cd ${params.SERVICE_NAME/-/_}
                     ${env.NODE_PATH}/pnpm install --shamefully-hoist
                     ${env.NODE_PATH}/pnpm run build:${NS}
-      '''
+      """
 }
 
 def imageBuild() {
