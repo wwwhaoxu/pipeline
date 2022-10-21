@@ -42,6 +42,7 @@ def imageBuild() {
             --build-arg JAR_NAME=${params.JAR_NAME} \
             -t ${env.ECR_ADDR}/${params.SERVICE_NAME}:${BUILD_TAG} -f Dockerfile .  
         docker push ${env.ECR_ADDR}/${params.SERVICE_NAME}:${BUILD_TAG}
+        docker rmi ${env.ECR_ADDR}/${params.SERVICE_NAME}:${BUILD_TAG}
     """
 }
 
