@@ -26,17 +26,16 @@ def info(message) {
 def delPod() {
     
     def result = sh(script: "kubectl get pod  |grep '0/1' |grep ${params.SERVICE_NAME}  | awk '{print \$1}'", returnStdout: true)
-                
-    def podList = result.split('\n')
 
-    info podList
-    
-    if (podList.size() > 0) {
-        println(podList.size())
+    if (result.length() != 0) {
+        info "start delte pod..."
+        podList = result.split('\n')
         for(pod in podList) {
             sh "kubectl delete pod/${pod}"
         }
     }
+    info "not need to delete pod"       
+    
 }
 
 def String kusIP(String ns) {
@@ -81,7 +80,7 @@ def trivyScan() {
         reportName: 'Trivy Scan',
         reportTitles: 'Trivy Scan'
     ]
-    
+
 }
 
 
