@@ -95,3 +95,9 @@ def checkStatus() {
     }
 }
 
+
+def imageScan() {
+    info "start docker image scan..."
+    Global.common.trivyScan()
+}
+

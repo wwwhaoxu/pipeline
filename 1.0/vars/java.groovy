@@ -24,3 +24,7 @@ def deploy() {
 def checkStatus() {
     Global.javautils.checkStatus()
 }
+
+def imageScan() {
+    Global.javautils.imageScan()
+}

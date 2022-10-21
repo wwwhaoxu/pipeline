@@ -19,8 +19,9 @@ static def replace(file, oldText, newText) {
 
 
 def info(message) {
-  echo "INFO: ${message}"
+    echo "INFO: ${message}"
 }
+
 
 def delPod() {
     
@@ -39,8 +40,10 @@ def delPod() {
 }
 
 def String kusIP(String ns) {
+
    def Map nstoip = ["online": "https://172.18.28.174:6443"]
    return nstoip[ns]
+
 }
 
 
@@ -53,6 +56,32 @@ def boolean checkPodRun(String gvr) {
     totalCount = result[1]
     return runCount == totalCount
    
+}
+
+def trivyScan() {
+
+    // sh 'curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl -o html.tpl'
+
+    template = libraryResource 'com/henry/jenkins/pipeline/templates/html.tpl'
+    writeFile file: "./html.tpl",text: template
+
+    // Scan all vuln levels
+    sh 'trivy -v'
+    sh 'trivy image --severity HIGH,CRITICAL \
+    --format template --template @./html.tpl \
+    -o report.html \
+    aliyun-acr-registry-vpc.cn-hongkong.cr.aliyuncs.com/base_image/node:v16.13.1-amazonlinux-2'
+
+    publishHTML target : [
+        allowMissing: true,
+        alwaysLinkToLastBuild: true,
+        keepAll: true,
+        reportDir: './',
+        reportFiles: 'report.html',
+        reportName: 'Trivy Scan',
+        reportTitles: 'Trivy Scan'
+    ]
+    
 }
 
 
