@@ -33,8 +33,7 @@ def delPod() {
         for(pod in podList) {
             sh "kubectl delete pod/${pod}"
         }
-    }
-    info "not need to delete pod"       
+    }      
     
 }
 
