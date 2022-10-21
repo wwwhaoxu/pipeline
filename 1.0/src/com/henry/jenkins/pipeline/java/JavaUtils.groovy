@@ -66,7 +66,6 @@ def deploy() {
             sh "kubectl apply -k ./overlay/${params.NS}"
             // sh 'kubectl get ns'
 
-            info "start delete pod ..."
             Global.common.delPod()
 
 
