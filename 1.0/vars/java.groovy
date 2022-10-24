@@ -1,5 +1,6 @@
 import com.henry.jenkins.pipeline.java.JavaUtils
 
+env.base_image="aaa"
 class Global {
     static Object javautils = new JavaUtils()
 }
